@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Tide Pool Adventure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Georgia, serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+        }
+        
+        h1 {
+            color: #ff6b9d;
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #c06c84;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-style: italic;
+        }
+        
+        .date {
+            text-align: center;
+            color: #ff6b9d;
+            margin-bottom: 25px;
+            font-size: 13px;
+        }
+        
+        .score-board {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffc3a0 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .score-board h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        
+        .total {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist-item {
+            background: #fff5f7;
+            margin-bottom: 12px;
+            padding: 18px;
+            border-radius: 15px;
+            cursor: pointer;
+            border: 2px solid #ffc0cb;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .checklist-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+        
+        .checklist-item.found {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffc3a0 100%);
+            color: white;
+        }
+        
+        .checkbox {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #ffb6c1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+        
+        .checklist-item.found .checkbox {
+            border-color: white;
+        }
+        
+        .checkmark {
+            color: #ff6b9d;
+            font-size: 18px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .checklist-item.found .checkmark {
+            display: block;
+        }
+        
+        .item-name {
+            font-size: 16px;
+            color: #c06c84;
+        }
+        
+        .checklist-item.found .item-name {
+            color: white;
+        }
+        
+        .reset-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .reset-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .celebration {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffc3a0 100%);
+            border-radius: 20px;
+            margin-top: 20px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .celebration.show {
+            display: block;
+        }
+        
+        .love-note {
+            text-align: center;
+            color: #ff6b9d;
+            font-size: 13px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💕 Marine Hunting With Bebbe 💕</h1>
+        <div class="date">January 4, 2026</div>
+        
+        <div class="score-board">
+            <h2>Treasures We've Found</h2>
+            <div class="score"><span id="found-count">0</span></div>
+            <div class="total">out of 15 marine wonders</div>
+        </div>
+        
+        <ul class="checklist">
+            <li class="checklist-item" data-id="1">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🌟 Ochre Sea Star</div>
+            </li>
+            
+            <li class="checklist-item" data-id="2">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🌸 Sea Anemone</div>
+            </li>
+            
+            <li class="checklist-item" data-id="3">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🦀 Hermit Crab</div>
+            </li>
+            
+            <li class="checklist-item" data-id="4">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🦞 Shore Crab</div>
+            </li>
+            
+            <li class="checklist-item" data-id="5">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🔵 Sea Urchin</div>
+            </li>
+            
+            <li class="checklist-item" data-id="6">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🐌 Limpet</div>
+            </li>
+            
+            <li class="checklist-item" data-id="7">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🐚 Barnacles</div>
+            </li>
+            
+            <li class="checklist-item" data-id="8">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🌿 Sea Lettuce</div>
+            </li>
+            
+            <li class="checklist-item" data-id="9">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🐠 Tide Pool Sculpin</div>
+            </li>
+            
+            <li class="checklist-item" data-id="10">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🦪 Mussel</div>
+            </li>
+            
+            <li class="checklist-item" data-id="11">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🐌 Periwinkle Snail</div>
+            </li>
+            
+            <li class="checklist-item" data-id="12">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🌊 Chiton</div>
+            </li>
+            
+            <li class="checklist-item" data-id="13">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🦑 Sea Cucumber</div>
+            </li>
+            
+            <li class="checklist-item" data-id="14">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🌺 Coralline Algae</div>
+            </li>
+            
+            <li class="checklist-item" data-id="15">
+                <div class="checkbox"><span class="checkmark">✓</span></div>
+                <div class="item-name">🐙 Octopus (Rare!)</div>
+            </li>
+        </ul>
+        
+        <div class="celebration" id="celebration">
+            💕 We found them all together! 💕<br>
+            <small>What a perfect memory!</small>
+        </div>
+        
+        <button class="reset-btn" onclick="resetGame()">Start New Adventure</button>
+        
+        <div class="love-note">Every treasure we find together becomes a memory we keep forever ✨</div>
+    </div>
+    
+    <script>
+        let foundItems = new Set();
+        
+        function updateScore() {
+            document.getElementById('found-count').textContent = foundItems.size;
+            
+            if (foundItems.size === 15) {
+                document.getElementById('celebration').classList.add('show');
+            } else {
+                document.getElementById('celebration').classList.remove('show');
+            }
+        }
+        
+        document.querySelectorAll('.checklist-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                
+                if (foundItems.has(id)) {
+                    foundItems.delete(id);
+                    this.classList.remove('found');
+                } else {
+                    foundItems.add(id);
+                    this.classList.add('found');
+                }
+                
+                updateScore();
+            });
+        });
+        
+        function resetGame() {
+            foundItems.clear();
+            document.querySelectorAll('.checklist-item').forEach(function(item) {
+                item.classList.remove('found');
+            });
+            updateScore();
+        }
+    </script>
+</body>
+</html>
